@@ -1,35 +1,33 @@
-import { loadVeim } from "../helpers/loadVeim";
-
-import { productosController} from "../views/productos/productoscontroller";
-
-import { categoriasController } from "../views/categorias/categoriacontroller";
+import { loadView } from "../helpers/loadView";
+import { productoController } from "../views/productos/productoController.js";
+import { categoriaController } from "../views/categorias/categoriaController.js";
 
 const routes = {
-    productos: {
-        "template": "?",
-        controlador : productosController,
-    },
-    categorias: {
-        "template": "?",
-        controlador: categoriasController,
-    },
-}
-
+  productos: {
+    "template": "productos/index.html",
+    controlador: productoController
+  },
+  categorias: {
+    "template": "controladorcategorias/index.html",
+    controlador: categoriaController
+  }
+};
 
 export const router = (app) => {
-const hash = location.hash.slice(1);
-matchRoute(hash)
-loadVeim(app, hash)
-
-   
+  const hash = location.hash.slice(1);
+  const { template, controlador } = matchRoute(hash)
+  // Llmando la vista
+  loadView(app, template);
+  // Ejecutar el controldor
+  // ?
+  
+controlador()
 }
+
 const matchRoute = (hash) => {
-    for ( const route in routes) {
-       if (route === hash) {
-        return route;
-       }
+  for (const route in routes) {
+    if (route === hash) {
+      return routes[route];
     }
+  }
 }
-
-
-

@@ -1,3 +1,3 @@
-export const categoriasController = () =>{
-    alert("Categoria")
+export const categoriaController = () => {
+  alert("Categoria")
 }
