@@ -1,8 +1,14 @@
 import { loadView } from "../helpers/loadView";
 import { productoController } from "../views/productos/productoController.js";
 import { categoriaController } from "../views/categorias/categoriaController.js";
+import { inicioController } from "../views/inicio/inicioController.js";
 
 const routes = {
+  inicio: {
+    "template": "inicio/index.html",
+    controlador: inicioController
+  },
+  
   productos: {
     "template": "productos/index.html",
     controlador: productoController
@@ -25,6 +31,9 @@ controlador()
 }
 
 const matchRoute = (hash) => {
+  // if(hash){
+  //   return routes["inicio"]
+  // }
   for (const route in routes) {
     if (route === hash) {
       return routes[route];
