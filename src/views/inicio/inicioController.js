@@ -1,3 +1,3 @@
 export const inicioController = () => {
-    alert("Inicio")
+    // alert("Inicio")
   }

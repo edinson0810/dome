@@ -1,3 +1,14 @@
+
+:root {
+  --primary-color: #39A900;
+  --primary-color-rbga: rgba(57, 169, 0, 0.7);
+  --secondary-color: #007832;
+  --tertiary-color: #f1f1f1;
+  --white-color: #fff;
+  --black-color: #000;
+}
+
+
 * {
   margin: 0;
   padding: 0;
@@ -6,6 +17,15 @@
 body {
   background-color: #f2f2f2;
   color: #000;
+}
+
+:root {
+  --primary-color: #39A900;
+  --primary-color-rbga: rgba(57, 169, 0, 0.7);
+  --secondary-color: #007832;
+  --tertiary-color: #f1f1f1;
+  --white-color: #fff;
+  --black-color: #000;
 }
 
 .container {
@@ -29,4 +49,46 @@ body {
   text-decoration: none;
   color: #131313;
   font-size: 20px;
+
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--black-color);
+  text-align: center;
+}
+.tabla {
+  grid-area: tabla;
+  background-color: var(--white-color);
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  height: min-content
+}
+
+table {
+  background-color: var(--white-color);
+  text-align: left;
+  border-collapse: collapse;
+  border: solid 1px var(--primary-color);
+  width: 100%;
+}
+
+th, td {
+  padding: 20px;
+}
+
+thead {
+  background-color: var(--primary-color);
+  border-bottom: solid 1px var(--black-color);
+  color: var(--white-color);
+}
+
+tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+tr:hover td {
+  background-color: var(--tertiary-color);
 }
