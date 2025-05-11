@@ -19,9 +19,13 @@ logo.classList.add("menu__link")
 productos.classList.add('menu__link')
 categorias.classList.add('menu__link')
 div.append(productos, categorias);
-header.append(logo,div);
+header.append(logo, div);
 
 window.addEventListener('hashchange', () => {
+  router(app);
+});
+
+window.addEventListener('DOMContentLoaded', () => {
   router(app)
 });
 

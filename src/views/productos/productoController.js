@@ -4,8 +4,12 @@ export const productoController = async () => {
     const datos = await respuesta.json();
     console.log(datos.data);
 
+
+
+
     const tabla = document.querySelector("#tabla");
     const tBody = tabla.querySelector("tbody");
+
 
     // Limpiar el contenido anterior si lo hay
     tBody.innerHTML = "";
@@ -29,11 +33,6 @@ export const productoController = async () => {
 
 
 
-// const tabla = document.querySelector("#tabla");
-// datos.data.forEach(element => {
-//   const div = document.createElement("div");
-//   div.textContent = element.nombre;
-//    tabla.append(div);
-// });
+
 };
 
