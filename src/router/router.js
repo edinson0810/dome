@@ -2,6 +2,7 @@ import { loadView } from "../helpers/loadView";
 import { productoController } from "../views/productos/productoController.js";
 import { categoriaController } from "../views/categorias/categoriacontroller.js";
 import { inicioController } from "../views/inicio/inicioController.js";
+import { categoriasController } from "../views/categorias/categoriasController.js";
 import { crearProducto } from "../views/productos/crearProducto.js";
 import { editarController } from "../views/categorias/editarController.js";
 
@@ -19,10 +20,13 @@ const routes = {
     "template": "productos/crearProducto.html",
     controlador: crearProducto
   },
-
-
   categorias: {
     "template": "categorias/index.html",
+    controlador: categoriaController
+  },
+
+  categoria: {
+    "template": "categorias/categoria.html",
     controlador: categoriaController
   },
 
