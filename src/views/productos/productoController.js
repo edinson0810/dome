@@ -2,13 +2,9 @@ export const productoController = async () => {
   try {
     const respuesta = await fetch("http://localhost:3000/api/productos");
     const datos = await respuesta.json();
-    console.log(datos.data);
-
-
-
-
     const tabla = document.querySelector("#tabla");
     const tBody = tabla.querySelector("tbody");
+    // console.log(tBody);
 
 
     // Limpiar el contenido anterior si lo hay
@@ -22,7 +18,7 @@ export const productoController = async () => {
 
       tdNombre.textContent = nombre;
       tdDescripcion.textContent = descripcion;
-      tdPrecio.textContent = `$${precio}`;
+      tdPrecio.textContent = `${precio}`;
 
       tr.setAttribute("id", `user_${id}`);
     });
