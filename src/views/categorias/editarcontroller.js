@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 export const editarController = async (a) => {
@@ -44,3 +45,10 @@ export const editarController = async (a) => {
     // Eventos
     form.addEventListener('submit', actualizar);    
 }
+=======
+export const editarController = () => {
+
+}
+
+
+>>>>>>> eb50d15cb644ae4643a87716f7e9b31aa54bd10f
