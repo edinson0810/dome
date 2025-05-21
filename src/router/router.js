@@ -1,15 +1,13 @@
 import { loadView } from "../helpers/loadView";
 import { productoController } from "../views/productos/productoController.js";
+import { categoriasController } from "../views/categorias/categoriascontroller.js";
 import { categoriaController } from "../views/categorias/categoriacontroller.js";
-import { inicioController } from "../views/inicio/inicioController.js";
+import { editarController } from "../views/categorias/editarcontroller.js";
 import { crearProducto } from "../views/productos/crearProducto.js";
 
 const routes = {
 
-  inicio: {
-    "template": "inicio/index.html",
-    controlador: inicioController
-  },
+  
   productos: {
     "template": "productos/index.html",
     controlador: productoController
@@ -19,28 +17,58 @@ const routes = {
     controlador: crearProducto
   },
 
-
+categoria:{
+"template": "categorias/categoria.html",
+controlador: categoriasController
+},
   categorias: {
     "template": "categorias/index.html",
-    controlador: categoriaController
+    controlador: categoriasController
+  },
+  "editarcategoria/:id": {
+    "template": "categorias/editar.html",
+    controlador: editarController
   }
+
 };
 
-export const router = async (app) => {
+export const router = async (app) => {  
   const hash = location.hash.slice(1);
-  const { template, controlador } = matchRoute(hash)
-  // Llmando la vista
-  await loadView(app, template);
+  const [ rutas, params ] = matchRoute(hash)
+  // console.log(rutas);
+  // console.log(params);
+  // return
+  // Llamando la vista
+  await loadView(app, rutas.template);
   // Ejecutar el controldor
-  // ?
-
-  controlador()
+  rutas.controlador(params)
 }
 
-const matchRoute = (hash) => {
+const matchRoute = (hash) => {  
+  const arreglo = hash.split('/') ;  
+
   for (const route in routes) {
-    if (route === hash) {
-      return routes[route];
+    const b = route.split('/');   
+    
+    if (b.length !== arreglo.length) continue
+    
+    const params = {}
+
+    const matched = b.every((parte, i) => {      
+      if (parte.startsWith(":")) {   
+        const partName = parte.slice(1);
+        const value = arreglo[i];
+        params[partName] = value;
+        return true
+      }
+      if (parte === arreglo[i]){
+        return true
+      }
+    }); 
+
+    if (matched) {      
+      return [routes[route], params]
     }
   }
+  return [null, null]
 }

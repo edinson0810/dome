@@ -2,7 +2,7 @@ export const productoController = async () => {
   try {
     const respuesta = await fetch("http://localhost:3000/api/productos");
     const datos = await respuesta.json();
-    console.log(datos.data);
+    // console.log(datos.data);
 
 
 
