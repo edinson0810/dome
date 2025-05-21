@@ -1,42 +1,69 @@
-export const productoController = async () => {
-  try {
-    const respuesta = await fetch("http://localhost:3000/api/productos");
-    const datos = await respuesta.json();
-<<<<<<< HEAD
-    // console.log(datos.data);
+// import Swal from "sweetalert2";
+export const productoController =async () => {
+ // Declaración de variables
+    const form = document.querySelector('form');
+    const nombre = document.querySelector('#nombre');
+    const descripcion = document.querySelector('#descripcion');
+    const precio = document.querySelector('#precio');
+    const listaCategorias =document.querySelector('#categoria');
 
-
-
-
-=======
->>>>>>> eb50d15cb644ae4643a87716f7e9b31aa54bd10f
-    const tabla = document.querySelector("#tabla");
-    const tBody = tabla.querySelector("tbody");
-    // console.log(tBody);
-
-
-    // Limpiar el contenido anterior si lo hay
-    tBody.innerHTML = "";
-
-    datos.data.forEach(({ id, nombre, descripcion, precio }) => {
-      const tr = tBody.insertRow();
-      const tdNombre = tr.insertCell(0);
-      const tdDescripcion = tr.insertCell(1);
-      const tdPrecio = tr.insertCell(2);
-
-      tdNombre.textContent = nombre;
-      tdDescripcion.textContent = descripcion;
-      tdPrecio.textContent = `${precio}`;
-
-      tr.setAttribute("id", `user_${id}`);
+    const requestCategorias = await fetch('http://localhost:3000/api/categorias');
+    const { data: categorias } = await requestCategorias.json();
+    
+    categorias.forEach((categoria) => {
+        const option = document.createElement('option');
+        option.value=categoria.id;
+        option.textContent=categoria.nombre;
+        listaCategorias.appendChild(option);
     });
 
-  } catch (error) {
-    console.error("Error al cargar productos:", error);
-  }
+    const requestproductos = await fetch('http://localhost:3000/api/categorias');
+    const { data: producto } = await requestproductos.json();
+    
+    
+    
+    // Declaración de métodos
+    const enviar = async (e) => {
+        e.preventDefault()
+        const data = {
+            categoria_id:listaCategorias.value,
+            nombre: nombre.value,
+            descripcion: descripcion.value,
+            precio:precio.value
+        }
+        const request = await fetch('http://localhost:3000/api/productos', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        });
+        const response = await request.json();
+        console.log(response);
+        
+        if (response.success) {
+            form.reset()
+             Swal.fire({
+                title: 'Muy bien!',
+                text: response.message,
+                icon: 'success',
+                confirmButtonText: 'Cool'
+            })
+            location.hash = "#productos";
+        }else{
+            console.log(response);   
+            Swal.fire({
+                title: 'Error!',
+                text: response.message,
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+         
+        }        
+    }
 
+    // Declaración de eventos
+    form.addEventListener('submit', enviar) 
 
-
-
-};
+}
 

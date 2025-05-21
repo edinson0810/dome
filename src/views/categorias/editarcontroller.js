@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 
-
+// import Swal from "sweetalert2";
 export const editarController = async (a) => {
     // declaración de variables
     const form = document.querySelector('form')
@@ -45,10 +44,3 @@ export const editarController = async (a) => {
     // Eventos
     form.addEventListener('submit', actualizar);    
 }
-=======
-export const editarController = () => {
-
-}
-
-
->>>>>>> eb50d15cb644ae4643a87716f7e9b31aa54bd10f
