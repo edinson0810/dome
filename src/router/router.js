@@ -36,7 +36,7 @@ const routes = {
   },
   "editarProductos/:id": {
     "template": "productos/editar.html",
-    controlador: editarController
+    controlador: editarProductos
   }
 
 };

@@ -7,15 +7,15 @@ const div = document.createElement("div");
 const productos = document.createElement("a");
 const categorias = document.createElement("a");
 const logo = document.createElement("a");
-logo.textContent = "Inicio";
+
 productos.textContent = "Productos";
 categorias.textContent = "Categorias";
-logo.setAttribute("href", "#inicio")
+
 productos.setAttribute("href", '#productos')
 categorias.setAttribute("href", '#categorias')
 header.classList.add('container', 'header')
 div.classList.add('menu')
-logo.classList.add("menu__link")
+
 productos.classList.add('menu__link')
 categorias.classList.add('menu__link')
 div.append(productos, categorias);
